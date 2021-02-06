@@ -25,15 +25,7 @@ def get_sra(sra):
 @app.route('/api/nucleotide/family=<family>')
 def get_family(family):
     page = int(request.args.get('page', 1))
-    scoreMin = request.args.get('scoreMin', None)
-    scoreMax = request.args.get('scoreMax', None)
-    if scoreMin:
-        scoreMin = int(scoreMin)
-    if scoreMax:
-        scoreMax = int(scoreMax)
-    pagination = get_family_pagination(family, page,
-        scoreMin=scoreMin,
-        scoreMax=scoreMax)
+    pagination = get_family_pagination(family, page, **request.args)
     total = pagination.total
     result = pagination.items
     return jsonify(result=result, total=total)

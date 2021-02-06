@@ -1,10 +1,5 @@
 from model.nucleotide import nsra, nfamily, nsequence
-
-tables = {
-    'nsra': nsra,
-    'nfamily': nfamily,
-    'nsequence': nsequence
-}
+from . import apply_filters
 
 per_page = 20
 
@@ -20,10 +15,7 @@ def get_sequences(sra):
 
 # family
 
-def get_family_pagination(family, page, scoreMin=None, scoreMax=None):
+def get_family_pagination(family, page, **kwargs):
     query = nfamily.query.filter(nfamily.family_name == family)
-    if scoreMin:
-        query = query.filter(nfamily.score >= scoreMin)
-    if scoreMax:
-        query = query.filter(nfamily.score <= scoreMax)
+    query = apply_filters(query, nfamily, **kwargs)
     return query.paginate(page, per_page)
