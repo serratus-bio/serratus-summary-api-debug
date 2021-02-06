@@ -1,0 +1,5 @@
+flask
+flask-cors
+Flask-SQLAlchemy
+sqlalchemy-aurora-data-api
+pandas
