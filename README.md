@@ -2,15 +2,16 @@
 
 ## Desired routes
 
-- `/api/nucleotide/sra/sra=SRR10144611`
-- `/api/rdrp/family/family=Coronaviridae`
+- `/api/nucleotide/sra=SRR10144611`
+- `/api/rdrp/family=Coronaviridae`
 
 ## Current routes
 
-- `/api/nsra/sra_id=SRR10144611`
-- `/api/nfamily/family_name=Coronaviridae`
-- `/api/nfamily/family_name=Coronaviridae?page=5`
-- `/api/nsequence/genbank_id=EU769558.1`
+- `/api/nucleotide/sra=SRR10144611`
+- `/api/nucleotide/family=Coronaviridae`
+- `/api/nucleotide/family=Coronaviridae?page=5`
+- `/api/nucleotide/family=Coronaviridae?page=5&scoreMin=90&scoreMax=100`
+- `/api/nucleotide/genbank=EU769558.1`
 
 ## TODO
 
