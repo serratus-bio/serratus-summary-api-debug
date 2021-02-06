@@ -19,7 +19,6 @@
 
 ## TODO
 
-- results from all tables for `sra_id`
 - caching
 - publish EB instance
 - update serratus.io

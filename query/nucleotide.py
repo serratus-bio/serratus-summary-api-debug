@@ -5,11 +5,15 @@ per_page = 20
 
 # sra
 
-def get_families(sra):
+def get_sra_properties(sra):
+    query = nsra.query.filter(nsra.sra_id == sra)
+    return query.one()
+
+def get_sra_families(sra):
     query = nfamily.query.filter(nfamily.sra_id == sra)
     return query.all()
 
-def get_sequences(sra):
+def get_sra_sequences(sra):
     query = nsequence.query.filter(nsequence.sra_id == sra)
     return query.all()
 

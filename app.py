@@ -1,6 +1,12 @@
 from flask import Flask, jsonify, request
 from flask_cors import CORS
-from query.nucleotide import get_families, get_sequences, get_family_pagination, get_genbank_pagination
+from query.nucleotide import (
+    get_sra_properties,
+    get_sra_families,
+    get_sra_sequences,
+    get_family_pagination,
+    get_genbank_pagination
+)
 
 
 def create_app():
@@ -17,9 +23,10 @@ cors = CORS(app, resources={r"/api/*": {"origins": "*"}})
 
 @app.route('/api/nucleotide/sra=<sra>')
 def get_sra(sra):
-    families = get_families(sra)
-    sequences = get_sequences(sra)
-    return jsonify(families=families, sequences=sequences)
+    properties = get_sra_properties(sra)
+    families = get_sra_families(sra)
+    sequences = get_sra_sequences(sra)
+    return jsonify(properties=properties, families=families, sequences=sequences)
 
 
 @app.route('/api/nucleotide/family=<family>')
