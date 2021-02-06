@@ -25,7 +25,7 @@ def get_sra(sra):
 @app.route('/api/nucleotide/family=<family>')
 def get_family(family):
     page = int(request.args.get('page', 1))
-    pagination = get_family_pagination(family, page, **request.args)
+    pagination = get_family_pagination(family, **request.args)
     total = pagination.total
     result = pagination.items
     return jsonify(result=result, total=total)

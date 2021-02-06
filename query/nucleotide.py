@@ -15,7 +15,8 @@ def get_sequences(sra):
 
 # family
 
-def get_family_pagination(family, page, **kwargs):
+def get_family_pagination(family, page=1, **kwargs):
+    page = int(page)
     query = nfamily.query.filter(nfamily.family_name == family)
     query = apply_filters(query, nfamily, **kwargs)
     return query.paginate(page, per_page)
