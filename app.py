@@ -1,6 +1,6 @@
 from flask import Flask, jsonify, request
 from flask_cors import CORS
-from query.nucleotide import get_families, get_sequences, get_family_pagination
+from query.nucleotide import get_families, get_sequences, get_family_pagination, get_genbank_pagination
 
 
 def create_app():
@@ -26,6 +26,15 @@ def get_sra(sra):
 def get_family(family):
     page = int(request.args.get('page', 1))
     pagination = get_family_pagination(family, **request.args)
+    total = pagination.total
+    result = pagination.items
+    return jsonify(result=result, total=total)
+
+
+@app.route('/api/nucleotide/genbank=<genbank>')
+def get_genbank(genbank):
+    page = int(request.args.get('page', 1))
+    pagination = get_genbank_pagination(genbank, **request.args)
     total = pagination.total
     result = pagination.items
     return jsonify(result=result, total=total)
