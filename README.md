@@ -17,6 +17,14 @@
 - `/api/nucleotide/genbank=EU769558.1?&scoreMin=90&scoreMax=100&page=5`
 - `/api/nucleotide/genbank=EU769558.1?&scoreMin=90&scoreMax=100&identityMin=80&identityMax=90`
 
+## SQL indexes for optimal querying
+
+```sql
+CREATE INDEX nfamily_sra_id_index ON nfamily (sra_id);
+CREATE INDEX nsequence_sra_id_index ON nsequence (sra_id);
+CREATE INDEX nsequence_genbank_id_index ON nsequence (genbank_id);
+```
+
 ## TODO
 
 - caching
