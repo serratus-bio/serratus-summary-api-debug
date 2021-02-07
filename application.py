@@ -1,4 +1,4 @@
-from flask import Flask
+from flask import Flask, jsonify
 from flask_cors import CORS
 
 
@@ -15,3 +15,7 @@ application = app  # for AWS EB
 cors = CORS(app, resources={r"/api/*": {"origins": "*"}})
 
 import route.nucleotide
+
+@app.errorhandler(Exception)
+def server_error(e):
+    return jsonify(error=repr(e)), 500
