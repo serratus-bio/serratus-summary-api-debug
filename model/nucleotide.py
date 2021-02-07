@@ -27,10 +27,10 @@ class nfamily(db.Model):
     n_reads : int
     n_global_reads : int
     length : int
-    top_genbank_id : str
-    top_score : int
-    top_length : int
-    top_name : str
+    # top_genbank_id : str
+    # top_score : int
+    # top_length : int
+    # top_name : str
 
     sra_id = db.Column(db.Text, primary_key=True)
     family_name = db.Column(db.Text, primary_key=True)
@@ -41,10 +41,10 @@ class nfamily(db.Model):
     n_reads = db.Column(db.Integer)
     n_global_reads = db.Column(db.Integer)
     length = db.Column(db.Integer)
-    top_genbank_id = db.Column(db.Text)
-    top_score = db.Column(db.Integer)
-    top_length = db.Column(db.Integer)
-    top_name = db.Column(db.Text)
+    # top_genbank_id = db.Column(db.Text)
+    # top_score = db.Column(db.Integer)
+    # top_length = db.Column(db.Integer)
+    # top_name = db.Column(db.Text)
 
 
 @dataclass
