@@ -23,6 +23,7 @@ def get_family_pagination(family, page=1, **kwargs):
     page = int(page)
     query = nfamily.query.filter(nfamily.family_name == family)
     query = apply_filters(query, nfamily, **kwargs)
+    query = query.order_by(nfamily.score.desc())
     return query.paginate(page, per_page)
 
 # genbank
@@ -31,4 +32,5 @@ def get_genbank_pagination(genbank, page=1, **kwargs):
     page = int(page)
     query = nsequence.query.filter(nsequence.genbank_id == genbank)
     query = apply_filters(query, nsequence, **kwargs)
+    query = query.order_by(nsequence.score.desc())
     return query.paginate(page, per_page)
