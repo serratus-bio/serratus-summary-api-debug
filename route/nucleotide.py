@@ -10,7 +10,7 @@ from query.nucleotide import (
 from werkzeug.contrib.cache import SimpleCache
 
 
-cache_timeout = 24 * 60 * 60  # 1 day
+cache_timeout = 0  # no timeout
 sra_cache = SimpleCache()
 
 @app.route('/api/nucleotide/sra=<sra>')
