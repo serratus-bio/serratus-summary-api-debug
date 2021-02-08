@@ -1,5 +1,8 @@
+from flask_sqlalchemy_caching import FromCache
 from model.nucleotide import nsra, nfamily, nsequence
 from . import apply_filters
+from application import cache
+
 
 per_page = 20
 
@@ -21,16 +24,20 @@ def get_sra_sequences(sra):
 
 def get_family_pagination(family, page=1, **kwargs):
     page = int(page)
-    query = nfamily.query.filter(nfamily.family_name == family)
+    query = (nfamily.query
+        .filter(nfamily.family_name == family)
+        .order_by(nfamily.score.desc())
+        .options(FromCache(cache)))
     query = apply_filters(query, nfamily, **kwargs)
-    query = query.order_by(nfamily.score.desc())
     return query.paginate(page, per_page)
 
 # genbank
 
 def get_genbank_pagination(genbank, page=1, **kwargs):
     page = int(page)
-    query = nsequence.query.filter(nsequence.genbank_id == genbank)
+    query = (nsequence.query
+        .filter(nsequence.genbank_id == genbank)
+        .order_by(nsequence.score.desc())
+        .options(FromCache(cache)))
     query = apply_filters(query, nsequence, **kwargs)
-    query = query.order_by(nsequence.score.desc())
     return query.paginate(page, per_page)
