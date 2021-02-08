@@ -16,6 +16,7 @@
 
 ```sql
 CREATE INDEX nfamily_sra_id_index ON nfamily (sra_id);
+CREATE INDEX nfamily_family_name_index ON nfamily (family_name);
 CREATE INDEX nsequence_sra_id_index ON nsequence (sra_id);
 CREATE INDEX nsequence_genbank_id_index ON nsequence (genbank_id);
 ```

@@ -1,5 +1,6 @@
 from flask import Flask, jsonify
 from flask_cors import CORS
+from flask_caching import Cache
 
 
 def create_app():
@@ -13,6 +14,7 @@ def create_app():
 app = create_app()
 application = app  # for AWS EB
 cors = CORS(app, resources={r"/api/*": {"origins": "*"}})
+cache = Cache(app)
 
 import route.nucleotide
 
