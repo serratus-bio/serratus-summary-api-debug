@@ -13,12 +13,12 @@ from werkzeug.contrib.cache import SimpleCache
 cache_timeout = 0  # no timeout
 sra_cache = SimpleCache()
 
-@app.route('/api/nucleotide/sra=<sra>')
+@app.route('/nucleotide/sra=<sra>')
 def get_sra(sra):
     return get_sra_cache(sra)
 
 
-@app.route('/api/nucleotide/family=<family>')
+@app.route('/nucleotide/family=<family>')
 def get_family(family):
     pagination = get_family_pagination(family, **request.args)
     total = pagination.total
@@ -26,7 +26,7 @@ def get_family(family):
     return jsonify(result=result, total=total)
 
 
-@app.route('/api/nucleotide/genbank=<genbank>')
+@app.route('/nucleotide/genbank=<genbank>')
 def get_genbank(genbank):
     pagination = get_genbank_pagination(genbank, **request.args)
     total = pagination.total

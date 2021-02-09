@@ -2,15 +2,15 @@
 
 ## Example routes
 
-- [`/api/nucleotide/sra=ERR2756788`](https://api.serratus.io/api/nucleotide/sra=ERR2756788)
-- [`/api/nucleotide/family=Coronaviridae`](https://api.serratus.io/api/nucleotide/family=Coronaviridae)
-- [`/api/nucleotide/family=Coronaviridae?page=5`](https://api.serratus.io/api/nucleotide/family=Coronaviridae?page=5)
-- [`/api/nucleotide/family=Coronaviridae?scoreMin=90&scoreMax=100&page=5`](https://api.serratus.io/api/nucleotide/family=Coronaviridae?scoreMin=90&scoreMax=100&page=5)
-- [`/api/nucleotide/family=Coronaviridae?&scoreMin=90&scoreMax=100&identityMin=80&identityMax=90`](https://api.serratus.io/api/nucleotide/family=Coronaviridae?&scoreMin=90&scoreMax=100&identityMin=80&identityMax=90)
-- [`/api/nucleotide/genbank=EU769558.1`](https://api.serratus.io/api/nucleotide/genbank=EU769558.1)
-- [`/api/nucleotide/genbank=EU769558.1?page=5`](https://api.serratus.io/api/nucleotide/genbank=EU769558.1?page=5)
-- [`/api/nucleotide/genbank=EU769558.1?&scoreMin=90&scoreMax=100&page=5`](https://api.serratus.io/api/nucleotide/genbank=EU769558.1?&scoreMin=90&scoreMax=100&page=5)
-- [`/api/nucleotide/genbank=EU769558.1?&scoreMin=90&scoreMax=100&identityMin=80&identityMax=90`](https://api.serratus.io/api/nucleotide/genbank=EU769558.1?&scoreMin=90&scoreMax=100&identityMin=80&identityMax=90)
+- [`/nucleotide/sra=ERR2756788`](https://api.serratus.io/nucleotide/sra=ERR2756788)
+- [`/nucleotide/family=Coronaviridae`](https://api.serratus.io/nucleotide/family=Coronaviridae)
+- [`/nucleotide/family=Coronaviridae?page=5`](https://api.serratus.io/nucleotide/family=Coronaviridae?page=5)
+- [`/nucleotide/family=Coronaviridae?scoreMin=90&scoreMax=100&page=5`](https://api.serratus.io/nucleotide/family=Coronaviridae?scoreMin=90&scoreMax=100&page=5)
+- [`/nucleotide/family=Coronaviridae?&scoreMin=90&scoreMax=100&identityMin=80&identityMax=90`](https://api.serratus.io/nucleotide/family=Coronaviridae?&scoreMin=90&scoreMax=100&identityMin=80&identityMax=90)
+- [`/nucleotide/genbank=EU769558.1`](https://api.serratus.io/nucleotide/genbank=EU769558.1)
+- [`/nucleotide/genbank=EU769558.1?page=5`](https://api.serratus.io/nucleotide/genbank=EU769558.1?page=5)
+- [`/nucleotide/genbank=EU769558.1?&scoreMin=90&scoreMax=100&page=5`](https://api.serratus.io/nucleotide/genbank=EU769558.1?&scoreMin=90&scoreMax=100&page=5)
+- [`/nucleotide/genbank=EU769558.1?&scoreMin=90&scoreMax=100&identityMin=80&identityMax=90`](https://api.serratus.io/nucleotide/genbank=EU769558.1?&scoreMin=90&scoreMax=100&identityMin=80&identityMax=90)
 
 ## SQL indexes for optimal querying
 
@@ -45,7 +45,7 @@ After creation:
     - Protocol: HTTPS
     - SSL certificate: `*.serratus.io`
 - Processes
-    - Health check path: `/api/nucleotide/sra=ERR2756788`
+    - Health check path: `/nucleotide/sra=ERR2756788`
 
 ### CodePipeline
 
@@ -73,5 +73,5 @@ After creation:
 ## TODO
 
 - caching
-- `/api/protein/*`
-- `/api/rdrp/*`
+- `/protein/*`
+- `/rdrp/*`
