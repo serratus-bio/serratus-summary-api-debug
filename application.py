@@ -14,7 +14,7 @@ def create_app():
 
 app = create_app()
 application = app  # for AWS EB
-cors = CORS(app, resources={r"/api/*": {"origins": "*"}})
+cors = CORS(app, resources={r"*": {"origins": "*"}})
 cache = Cache(app)
 
 import route.nucleotide
