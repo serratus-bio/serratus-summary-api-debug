@@ -8,17 +8,17 @@ from query.nucleotide import (
     get_genbank_pagination
 )
 from werkzeug.contrib.cache import SimpleCache
+from config import CACHE_DEFAULT_TIMEOUT
 
 
-cache_timeout = 0  # no timeout
 sra_cache = SimpleCache()
 
-@app.route('/api/nucleotide/sra=<sra>')
+@app.route('/nucleotide/sra=<sra>')
 def get_sra(sra):
     return get_sra_cache(sra)
 
 
-@app.route('/api/nucleotide/family=<family>')
+@app.route('/nucleotide/family=<family>')
 def get_family(family):
     pagination = get_family_pagination(family, **request.args)
     total = pagination.total
@@ -26,7 +26,7 @@ def get_family(family):
     return jsonify(result=result, total=total)
 
 
-@app.route('/api/nucleotide/genbank=<genbank>')
+@app.route('/nucleotide/genbank=<genbank>')
 def get_genbank(genbank):
     pagination = get_genbank_pagination(genbank, **request.args)
     total = pagination.total
@@ -42,5 +42,5 @@ def get_sra_cache(sra):
     families = get_sra_families(sra)
     sequences = get_sra_sequences(sra)
     response = jsonify(properties=properties, families=families, sequences=sequences)
-    sra_cache.set(sra, response, timeout=cache_timeout)
+    sra_cache.set(sra, response, timeout=CACHE_DEFAULT_TIMEOUT)
     return response
