@@ -78,3 +78,5 @@ After creation:
 
 - `/protein/*`
 - `/rdrp/*`
+- handle timeouts e.g.
+    > DatabaseError: current transaction is aborted, commands ignored until end of transaction block
