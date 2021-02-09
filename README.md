@@ -17,8 +17,14 @@
 ```sql
 CREATE INDEX nfamily_sra_id_index ON nfamily (sra_id);
 CREATE INDEX nfamily_family_name_index ON nfamily (family_name);
+CREATE INDEX nfamily_score_index ON nfamily (score);
+CREATE INDEX nfamily_percent_identity_index ON nfamily (percent_identity);
+
 CREATE INDEX nsequence_sra_id_index ON nsequence (sra_id);
 CREATE INDEX nsequence_genbank_id_index ON nsequence (genbank_id);
+CREATE INDEX nsequence_score_index ON nsequence (score);
+CREATE INDEX nsequence_percent_identity_index ON nsequence (percent_identity);
+CREATE INDEX nsequence_genbank_id_score_index ON nsequence (genbank_id, score);
 ```
 
 ## AWS Setup
