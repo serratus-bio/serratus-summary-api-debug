@@ -70,8 +70,11 @@ After creation:
 
 - `A` record for `api.serratus.io` -> Elastic Beanstalk endpoint
 
+## Debugging
+
+- Disable caches: in `config.py` set `CACHE_DEFAULT_TIMEOUT = 1` (timeout after 1 second)
+
 ## TODO
 
-- caching
 - `/protein/*`
 - `/rdrp/*`
