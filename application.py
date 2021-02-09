@@ -1,6 +1,7 @@
 from flask import Flask, jsonify
 from flask_cors import CORS
 from flask_caching import Cache
+from werkzeug.exceptions import HTTPException
 
 
 def create_app():
@@ -20,4 +21,6 @@ import route.nucleotide
 
 @app.errorhandler(Exception)
 def server_error(e):
+    if isinstance(e, HTTPException):
+        return e
     return jsonify(error=repr(e)), 500
