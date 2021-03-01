@@ -4,7 +4,7 @@ from query.nucleotide import (
     get_run_properties,
     get_run_families,
     get_run_sequences,
-    get_matches,
+    get_matches_file,
     get_matches_paginated,
 )
 from cachelib.simple import SimpleCache
@@ -19,8 +19,12 @@ def get_run_route(run_id):
 
 @app.route('/matches/nucleotide')
 def get_matches_route():
-    run_ids = get_matches(**request.args)
-    return Response('\n'.join(run_ids), mimetype='text/plain')
+    contents = get_matches_file(**request.args)
+    filename = 'SerratusMatches.csv'
+    headers = {'Content-Disposition': f'attachment;filename={filename}'}
+    return Response(contents,
+                    mimetype='text/csv',
+                    headers=headers)
 
 @app.route('/matches/nucleotide/paged')
 def get_matches_paginated_route():
