@@ -1,15 +1,15 @@
 from dataclasses import dataclass
-from . import db
+from .. import db
 
 @dataclass
 class nsra(db.Model):
-    sra_id : str
+    run_id : str
     read_length : int
     genome : str
     version : str
     date : str
 
-    sra_id = db.Column(db.Text, primary_key=True)
+    run_id = db.Column(db.Text, primary_key=True)
     read_length = db.Column(db.Integer)
     genome = db.Column(db.Text)
     version = db.Column(db.Text)
@@ -18,7 +18,7 @@ class nsra(db.Model):
 
 @dataclass
 class nfamily(db.Model):
-    sra_id : str
+    run_id : str
     family_name : str
     coverage_bins : str
     score : int
@@ -32,9 +32,7 @@ class nfamily(db.Model):
     # top_length : int
     # top_name : str
 
-    filter_col_name = 'family_name'
-
-    sra_id = db.Column(db.Text, primary_key=True)
+    run_id = db.Column(db.Text, primary_key=True)
     family_name = db.Column(db.Text, primary_key=True)
     coverage_bins = db.Column(db.Text)
     score = db.Column(db.Integer)
@@ -48,10 +46,12 @@ class nfamily(db.Model):
     # top_length = db.Column(db.Integer)
     # top_name = db.Column(db.Text)
 
+    filter_col_name = 'family_name'
+
 
 @dataclass
 class nsequence(db.Model):
-    sra_id : str
+    run_id : str
     family_name : str
     genbank_id : str
     coverage_bins : str
@@ -63,9 +63,7 @@ class nsequence(db.Model):
     length : int
     genbank_name : str
 
-    filter_col_name = 'genbank_id'
-
-    sra_id = db.Column(db.Text, primary_key=True)
+    run_id = db.Column(db.Text, primary_key=True)
     family_name = db.Column(db.Text, primary_key=True)
     genbank_id = db.Column(db.Text, primary_key=True)
     coverage_bins = db.Column(db.Text)
@@ -77,51 +75,4 @@ class nsequence(db.Model):
     length = db.Column(db.Integer)
     genbank_name = db.Column(db.Text)
 
-
-@dataclass
-class nfamily_counts(db.Model):
-    family_name : str
-    score : int
-    percent_identity : int
-    count : int
-
-    filter_col_name = 'family_name'
-
-    family_name = db.Column(db.Text, primary_key=True)
-    score = db.Column(db.Integer)
-    percent_identity = db.Column(db.Integer)
-    count = db.Column(db.Integer)
-
-
-@dataclass
-class nsequence_counts(db.Model):
-    genbank_id : str
-    score : int
-    percent_identity : int
-    count : int
-
     filter_col_name = 'genbank_id'
-
-    genbank_id = db.Column(db.Text, primary_key=True)
-    score = db.Column(db.Integer)
-    percent_identity = db.Column(db.Integer)
-    count = db.Column(db.Integer)
-
-
-@dataclass
-class nfamily_list(db.Model):
-    family_name : str
-
-    filter_col_name = 'family_name'
-
-    family_name = db.Column(db.Text, primary_key=True)
-
-
-@dataclass
-class nsequence_list(db.Model):
-    genbank_id : str
-
-    filter_col_name = 'genbank_id'
-
-    genbank_id = db.Column(db.Text, primary_key=True)
-
