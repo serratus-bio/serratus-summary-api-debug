@@ -1,4 +1,5 @@
 from dataclasses import dataclass
+from sqlalchemy.orm import synonym
 from .. import db
 
 @dataclass
@@ -47,6 +48,7 @@ class rfamily(db.Model):
     phylum_name : str
     family_name : str
     family_group : str
+    family_id : str
     coverage_bins : str
     score : int
     percent_identity : int
@@ -58,6 +60,7 @@ class rfamily(db.Model):
     phylum_name = db.Column(db.Text, primary_key=True)
     family_name = db.Column(db.Text)
     family_group = db.Column(db.Text, primary_key=True)
+    family_id = synonym('family_group')
     coverage_bins = db.Column(db.Text)
     score = db.Column(db.Integer)
     percent_identity = db.Column(db.Integer)
@@ -69,11 +72,12 @@ class rfamily(db.Model):
 
 
 @dataclass
-class rdrp(db.Model):
+class rsequence(db.Model):
     run_id : str
     phylum_name : str
     family_name : str
     family_group : str
+    family_id : str
     virus_name : str
     sequence_accession : str
     coverage_bins : str
@@ -87,6 +91,7 @@ class rdrp(db.Model):
     phylum_name = db.Column(db.Text, primary_key=True)
     family_name = db.Column(db.Text)
     family_group = db.Column(db.Text, primary_key=True)
+    family_id = synonym('family_group')
     virus_name = db.Column(db.Text, primary_key=True)
     sequence_accession = db.Column(db.Text, primary_key=True)
     coverage_bins = db.Column(db.Text)

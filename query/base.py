@@ -16,6 +16,24 @@ class QueryBase:
                 return_dict[key] = query.all()
         return return_dict
 
+    def get_run_matches_paginated(self, run, family=None, page=1, perPage=20):
+        run_id = run
+        if family:
+            family_id = family
+            table = self.table_map['sequence']
+            query = (table.query
+                .filter(table.run_id == run_id)
+                .filter(table.family_id == family_id)
+                .order_by(table.score.desc())
+                .options(FromCache(cache)))
+        else:
+            table = self.table_map['family']
+            query = (table.query
+                .filter(table.run_id == run_id)
+                .order_by(table.score.desc())
+                .options(FromCache(cache)))
+        return query.paginate(int(page), int(perPage))
+
     # matches
 
     def get_table_key(self, **url_params):
@@ -84,13 +102,16 @@ class QueryBase:
         table = self.list_table_map[query_type]
         filter_col = getattr(table, table.filter_col_name)
         select_column_names = [table.filter_col_name]
+        if query_type == 'sequence':
+            select_column_names.append('virus_name')
         select_columns = [getattr(table, name) for name in select_column_names]
         query = (table.query
             .with_entities(*select_columns)
             .options(FromCache(cache)))
         values_list = query.all()
-        result_json = [entry[0] for entry in values_list]
-        return result_json
+        if query_type == 'sequence':  # {accession: name}
+            return {entry[0]: entry[1] for entry in values_list}
+        return {entry[0]: None for entry in values_list}
 
 
 def apply_filters(query, model, scoreMin=None, scoreMax=None, identityMin=None, identityMax=None):

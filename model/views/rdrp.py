@@ -33,7 +33,7 @@ class rfamily_counts(db.Model):
 
 
 @dataclass
-class rdrp_counts(db.Model):
+class rsequence_counts(db.Model):
     sequence_accession : str
     score : int
     percent_identity : int
@@ -62,7 +62,9 @@ class rfamily_list(db.Model):
 
 
 @dataclass
-class rdrp_list(db.Model):
+class rsequence_list(db.Model):
     sequence_accession : str
+    virus_name : str
     sequence_accession = db.Column(db.Text, primary_key=True)
+    virus_name = db.Column(db.Text)
     filter_col_name = 'sequence_accession'
