@@ -2,6 +2,7 @@
 
 ## Example routes
 
+- [`/index/run=ERR2756788`](https://api.serratus.io/index/run=ERR2756788)
 - [`/summary/nucleotide/run=ERR2756788`](https://api.serratus.io/summary/nucleotide/run=ERR2756788)
 - [`/matches/nucleotide/paged?family=Coronaviridae`](https://api.serratus.io/matches/nucleotide/paged?family=Coronaviridae)
 - [`/matches/nucleotide/paged?family=Coronaviridae&page=5&perPage=10`](https://api.serratus.io/matches/nucleotide/paged?family=Coronaviridae&page=5&perPage=10)
